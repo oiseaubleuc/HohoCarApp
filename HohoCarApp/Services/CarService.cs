@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HohoCarApp.Models;
 
+
 namespace HohoCarApp.Services
 {
     public class CarService : ICarService
@@ -59,6 +60,31 @@ namespace HohoCarApp.Services
                 cars.Remove(car);
             }
             return Task.CompletedTask;
+        }
+
+        Task<List<Car>> ICarService.GetCarsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Car> ICarService.GetCarByIdAsync(int carId)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task ICarService.AddCarAsync(Car car)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task ICarService.UpdateCarAsync(Car car)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task ICarService.DeleteCarAsync(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

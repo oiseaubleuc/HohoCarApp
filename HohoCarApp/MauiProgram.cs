@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using HohoCarApp.Services;
+using HohoCarApp.ViewModel;
+using HohoCarApp.Views;
+using Microsoft.Extensions.Logging;
 
 namespace HohoCarApp
 {
@@ -14,12 +17,26 @@ namespace HohoCarApp
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddSingleton<ICarService, CarService>();
+            builder.Services.AddTransient<CarListViewModel>();
+            builder.Services.AddTransient<CarDetailsViewModel>();
+            builder.Services.AddTransient<CarList>();
+            builder.Services.AddTransient<CarDetails>(); 
+
+
+
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
+            var app = builder.Build();
+
+
+            App.ServiceProvider = app.Services;
 
             return builder.Build();
         }
     }
 }
+
+

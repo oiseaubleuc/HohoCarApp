@@ -30,6 +30,15 @@
                     BackgroundColor="DarkGreen"
                     TextColor="White"
                     Command="{Binding NavigateToAboutCommand}" />
+
+            <Button Text="Voir les voitures"
+                Clicked="OnBekijkAutosClicked"
+                BackgroundColor="DarkBlue"
+                TextColor="White"
+                HorizontalOptions="Center"
+                Margin="20"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>
+
+

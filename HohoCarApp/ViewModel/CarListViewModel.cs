@@ -1,31 +1,43 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using HohoCarApp.Models;
+using HohoCarApp.ViewModel;
 
-namespace HohoCarApp.ViewModel
+public class CarListViewModel : BaseViewModel
 {
-    public class CarListViewModel : BaseViewModel
+    private readonly ApiService _apiService;
+    private ObservableCollection<Car> _cars;
+
+    public ObservableCollection<Car> Cars
     {
-        private ObservableCollection<Car> cars;
-        public ObservableCollection<Car> Cars
+        get { return _cars; }
+        set
         {
-            get => cars;
-            set => SetProperty(ref cars, value);
+            _cars = value;
+            OnPropertyChanged();
         }
+    }
 
-        public CarListViewModel()
-        {
-            Cars = new ObservableCollection<Car>();
-            LoadCars();
-        }
+    public CarListViewModel(ApiService apiService)
+    {
+        _apiService = apiService;
+        Cars = new ObservableCollection<Car>();
+        LoadCars();
+    }
 
-        private async Task LoadCars()
+    public async Task LoadCars()
+    {
+        var cars = await _apiService.GetCarsAsync();
+        foreach (var car in cars)
         {
-            // Simuleer ophalen van data. Later vervangen door een echte database-aanroep.
-            await Task.Delay(1000);
-            Cars.Add(new Car { Brand = "Toyota", Model = "Corolla", Price = 20000, Year = 2022, Mileage = 5000 });
-            Cars.Add(new Car { Brand = "Tesla", Model = "Model 3", Price = 35000, Year = 2021, Mileage = 2000 });
-            Cars.Add(new Car { Brand = "Ford", Model = "Focus", Price = 15000, Year = 2019, Mileage = 30000 });
+            Cars.Add(car);
         }
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Maui.Controls;
+using HohoCarApp.Services;
 using System.Threading.Tasks;
-
 using System.Windows.Input;
 using HohoCarApp.Views;
-using HohoCarApp.Services;
+using HohoCarApp.ViewModel;
+using System.Diagnostics;
 
 namespace HohoCarApp.ViewModel
 {
@@ -19,8 +17,7 @@ namespace HohoCarApp.ViewModel
         public HomeViewModel(ICarService carService)
         {
             this.carService = carService;
-
-            NavigateToCarListCommand = new Command(async () => await GoToCarList());
+            NavigateToCarListCommand = new Command(async () => await GoToCarList()); 
         }
 
         private async Task GoToCarList()
@@ -28,6 +25,5 @@ namespace HohoCarApp.ViewModel
             await Shell.Current.GoToAsync(nameof(CarList));
         }
     }
-
 }
 

@@ -6,16 +6,20 @@ namespace HohoCarApp.Views
 {
     public partial class CarDetails : ContentPage
     {
-        public CarDetails()
+        public CarDetails(CarDetailsViewModel vm)
         {
             InitializeComponent();
+            BindingContext = vm;
         }
 
         protected override void OnNavigatedTo(NavigatedToEventArgs args)
         {
             base.OnNavigatedTo(args);
 
-           
+
         }
     }
 }
+
+
+

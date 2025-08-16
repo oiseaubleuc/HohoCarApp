@@ -1,11 +1,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HohoCarApp.Views.CarDetails">
-    <StackLayout Padding="10">
-        <Label Text="{Binding SelectedCar.Brand}" FontSize="24" />
-        <Label Text="{Binding SelectedCar.Model}" FontSize="20" />
-        <Label Text="{Binding SelectedCar.Price, StringFormat='€{0:F2}'}" FontSize="18" />
-        <Label Text="{Binding SelectedCar.Year}" FontSize="18" />
-        <Label Text="{Binding SelectedCar.Description}" FontSize="16" />
-    </StackLayout>
+             x:Class="HohoCarApp.Views.CarDetails"
+             Title="Détails">
+
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="10">
+            <Image Source="{Binding SelectedCar.ImagePath}" HeightRequest="200" Aspect="AspectFill" />
+            <Label Text="{Binding SelectedCar.Name}" FontAttributes="Bold" FontSize="24" />
+            <Label Text="{Binding SelectedCar.Description}" FontSize="16" />
+            <Label Text="{Binding SelectedCar.Price, StringFormat='Prix: {0:C}'}" />
+            <Label Text="{Binding SelectedCar.Location}" />
+            <Label Text="{Binding SelectedCar.Year, StringFormat='Année: {0}'}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

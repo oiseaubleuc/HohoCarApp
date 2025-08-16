@@ -1,16 +1,46 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HohoCarApp.Views.CarList">
+             x:Class="HohoCarApp.Views.CarList"
+             x:Name="CarListPage"
+             Title="Liste des voitures">
 
-    <CollectionView ItemsSource="{Binding Cars}" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <StackLayout Orientation="Vertical" Padding="10">
-                    <Label Text="{Binding Brand}" FontSize="20" />
-                    <Label Text="{Binding Model}" FontSize="16" />
-                    <Label Text="{Binding Price, StringFormat='€{0:F2}'}" FontSize="16" />
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <!-- ✅ ToolbarItem intégré correctement -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Retour"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="OnBackClicked" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <CollectionView ItemsSource="{Binding Cars}" Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="5" Padding="10" CornerRadius="10" BorderColor="LightGray" HasShadow="True">
+                        <Grid ColumnDefinitions="100,*,Auto" RowDefinitions="Auto,Auto">
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding ImagePath}"
+                                   WidthRequest="100"
+                                   HeightRequest="100"
+                                   Aspect="AspectFill"
+                                   Margin="5"/>
+
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding Price, StringFormat='Prix: {0:C}'}" FontSize="14" />
+                                <Label Text="{Binding Year, StringFormat='Année: {0}'}" FontSize="12" TextColor="Gray"/>
+                            </StackLayout>
+
+                            <Button Text="Voir détails"
+                                    Grid.Column="2"
+                                    VerticalOptions="Center"
+                                    Command="{Binding BindingContext.SeeDetailsCommand, Source={x:Reference CarListPage}}"
+                                    CommandParameter="{Binding}" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>
+

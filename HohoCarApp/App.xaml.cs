@@ -1,12 +1,21 @@
-﻿namespace HohoCarApp
+﻿using HohoCarApp.Views;
+
+namespace HohoCarApp
 {
     public partial class App : Application
     {
-        public App()
+        public static IServiceProvider ServiceProvider { get; set; }
+
+        public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new Views.Home());
+
+            ServiceProvider = serviceProvider;
+
+            MainPage = new NavigationPage(new Home()); // 👈 ta page Home personnalisée
         }
 
     }
 }
+
+

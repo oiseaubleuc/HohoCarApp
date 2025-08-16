@@ -7,6 +7,22 @@ namespace HohoCarApp.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        bool isBusy;
+
+        public bool IsBusy
+        {
+            get => isBusy;
+            set
+            {
+
+                if (isBusy = value)
+                    return;
+
+                isBusy = value;
+                OnPropertyChanged(nameof(isBusy));
+            }
+        }
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
