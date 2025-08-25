@@ -2,6 +2,8 @@
 using HohoCarApp.ViewModel;
 using HohoCarApp.Views;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
+
 
 namespace HohoCarApp
 {
@@ -21,7 +23,12 @@ namespace HohoCarApp
             builder.Services.AddTransient<CarListViewModel>();
             builder.Services.AddTransient<CarDetailsViewModel>();
             builder.Services.AddTransient<CarList>();
-            builder.Services.AddTransient<CarDetails>(); 
+            builder.Services.AddTransient<CarDetails>();
+
+            builder.Services.AddHttpClient();                 
+            builder.Services.AddSingleton<ApiService>();     
+            builder.Services.AddTransient<CarListViewModel>(); 
+            builder.Services.AddTransient<CarList>();        
 
 
 

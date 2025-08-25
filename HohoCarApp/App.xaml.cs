@@ -12,7 +12,7 @@ namespace HohoCarApp
 
             ServiceProvider = serviceProvider;
 
-            MainPage = new NavigationPage(new Home()); // 👈 ta page Home personnalisée
+            MainPage = new NavigationPage(new Home()); 
         }
 
     }

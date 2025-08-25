@@ -10,11 +10,11 @@ namespace HohoCarApp.Views
         private readonly CarListViewModel _vm;
 
 
-        public CarList(ApiService apiService) // Verander de constructor om ApiService door te geven
+        public CarList(ApiService apiService) 
         {
             InitializeComponent();
-            _viewModel = new CarListViewModel(apiService); // Maak een nieuwe instantie van CarListViewModel
-            BindingContext = _viewModel; // Zet de BindingContext naar de ViewModel
+            _viewModel = new CarListViewModel(apiService);
+            BindingContext = _viewModel;
         }
 
         private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)

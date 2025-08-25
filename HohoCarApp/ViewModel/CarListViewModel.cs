@@ -3,41 +3,34 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using HohoCarApp.Models;
 using HohoCarApp.ViewModel;
+using System.Threading.Tasks;
+using HohoCarApp.Services;
+
+
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using HohoCarApp.Models;
+using HohoCarApp.Services;
 
 public class CarListViewModel : BaseViewModel
 {
-    private readonly ApiService _apiService;
-    private ObservableCollection<Car> _cars;
+    private readonly ApiService _api;
 
-    public ObservableCollection<Car> Cars
-    {
-        get { return _cars; }
-        set
-        {
-            _cars = value;
-            OnPropertyChanged();
-        }
-    }
+   
+    public ObservableCollection<Car> Cars { get; } = new();
 
-    public CarListViewModel(ApiService apiService)
+ 
+    public CarListViewModel(ApiService api)
     {
-        _apiService = apiService;
-        Cars = new ObservableCollection<Car>();
-        LoadCars();
+        _api = api;          
+        _ = LoadCars();    
     }
 
     public async Task LoadCars()
     {
-        var cars = await _apiService.GetCarsAsync();
+        var cars = await _api.GetCarsAsync();   
+        Cars.Clear();
         foreach (var car in cars)
-        {
             Cars.Add(car);
-        }
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
