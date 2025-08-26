@@ -19,25 +19,20 @@ namespace HohoCarApp
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-            builder.Services.AddSingleton<ICarService, CarService>();
+
+            // HTTP client and services
+            builder.Services.AddHttpClient();
+            builder.Services.AddSingleton<ICarService, ApiCarService>();
+
             builder.Services.AddTransient<CarListViewModel>();
             builder.Services.AddTransient<CarDetailsViewModel>();
             builder.Services.AddTransient<CarList>();
             builder.Services.AddTransient<CarDetails>();
 
-            builder.Services.AddHttpClient();                 
-            builder.Services.AddSingleton<ApiService>();     
-            builder.Services.AddTransient<CarListViewModel>(); 
-            builder.Services.AddTransient<CarList>();        
-
-
-
-
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
             var app = builder.Build();
-
 
             App.ServiceProvider = app.Services;
 

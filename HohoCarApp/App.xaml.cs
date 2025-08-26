@@ -1,4 +1,5 @@
 ﻿using HohoCarApp.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HohoCarApp
 {
@@ -12,7 +13,7 @@ namespace HohoCarApp
 
             ServiceProvider = serviceProvider;
 
-            MainPage = new NavigationPage(new Home()); 
+            MainPage = new AppShell(); 
         }
 
     }

@@ -1,43 +1,238 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HohoCarApp.Views.Home"
-             Title="HohoCarApp">
+             Title="HohoCarApp"
+             BackgroundColor="#f5f5f5">
+
     <ScrollView>
-        <StackLayout Padding="20" Spacing="30" VerticalOptions="Center">
-            <!-- Welkomstbericht -->
-            <Label Text="Welkom bij HohoCarApp"
-                   FontSize="24"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center" />
+        <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+            
+            <Frame Grid.Row="0" 
+                   BackgroundColor="#1a1a1a" 
+                   Padding="30,25"
+                   Margin="0,0,0,0"
+                   CornerRadius="0"
+                   HasShadow="True">
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Grid.Column="0" Spacing="8">
+                        <Label Text="HOHOCARAPP" 
+                               FontSize="20" 
+                               FontAttributes="Bold" 
+                               TextColor="#ffffff"
+                               FontFamily="OpenSansSemibold" />
+                        <Label Text="Premium Automotive Solutions" 
+                               FontSize="14" 
+                               TextColor="#cccccc"
+                               FontFamily="OpenSansRegular" />
+                    </VerticalStackLayout>
+                    <Label Grid.Column="1" 
+                           Text="🏢" 
+                           FontSize="24" 
+                           VerticalOptions="Center" />
+                </Grid>
+            </Frame>
 
-            <Label Text="Blader door onze selectie van auto's, bekijk details en kies je droomauto!"
-                   FontSize="16"
-                   HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
+            <VerticalStackLayout Grid.Row="1" 
+                                Padding="20" 
+                                Spacing="30"
+                                VerticalOptions="Center">
 
-            <!-- Navigatieknop naar de lijstpagina -->
-            <Button Text="Bekijk Auto's"
-                    FontSize="18"
-                    CornerRadius="10"
-                    BackgroundColor="DarkBlue"
-                    TextColor="White"
-                    Command="{Binding NavigateToCarListCommand}" />
+                <Frame BackgroundColor="White" 
+                       Padding="30" 
+                       CornerRadius="8" 
+                       HasShadow="True"
+                       BorderColor="#e0e0e0">
+                    <VerticalStackLayout Spacing="20" HorizontalOptions="Center">
+                        <Label Text="Welcome to HohoCarApp" 
+                               FontSize="28" 
+                               FontAttributes="Bold"
+                               TextColor="#2c3e50"
+                               FontFamily="OpenSansSemibold"
+                               HorizontalOptions="Center" />
+                        
+                        <Label Text="Discover our comprehensive collection of premium vehicles with detailed specifications, competitive pricing, and exceptional service." 
+                               FontSize="16" 
+                               TextColor="#555555"
+                               FontFamily="OpenSansRegular"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </Frame>
 
-            <!-- Eventueel meer navigatie -->
-            <Button Text="Over ons"
-                    FontSize="18"
-                    CornerRadius="10"
-                    BackgroundColor="DarkGreen"
-                    TextColor="White"
-                    Command="{Binding NavigateToAboutCommand}" />
+                <Frame BackgroundColor="White" 
+                       Padding="30" 
+                       CornerRadius="8" 
+                       HasShadow="True"
+                       BorderColor="#e0e0e0">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="Main Navigation" 
+                               FontSize="20" 
+                               FontAttributes="Bold"
+                               TextColor="#2c3e50"
+                               FontFamily="OpenSansSemibold"
+                               HorizontalOptions="Center" />
+                        
+                        <Button Text="Vehicle Catalog" 
+                                FontSize="16" 
+                                FontAttributes="Bold"
+                                FontFamily="OpenSansSemibold"
+                                CornerRadius="6" 
+                                BackgroundColor="#3498db" 
+                                TextColor="White"
+                                HeightRequest="50"
+                                Command="{Binding NavigateToCarListCommand}" />
+                        
+                        <Button Text="Company Information" 
+                                FontSize="16" 
+                                FontAttributes="Bold"
+                                FontFamily="OpenSansSemibold"
+                                CornerRadius="6" 
+                                BackgroundColor="#27ae60" 
+                                TextColor="White"
+                                HeightRequest="50"
+                                Command="{Binding NavigateToAboutCommand}" />
+                        
+                        <Button Text="Industry News &amp; Updates" 
+                                FontSize="16" 
+                                FontAttributes="Bold"
+                                FontFamily="OpenSansSemibold"
+                                CornerRadius="6" 
+                                BackgroundColor="#34495e" 
+                                TextColor="White"
+                                HeightRequest="50"
+                                Command="{Binding NavigateToNewsCommand}" />
+                    </VerticalStackLayout>
+                </Frame>
 
-            <Button Text="Voir les voitures"
-                Clicked="OnBekijkAutosClicked"
-                BackgroundColor="DarkBlue"
-                TextColor="White"
-                HorizontalOptions="Center"
-                Margin="20"/>
-        </StackLayout>
+                <Frame BackgroundColor="White" 
+                       Padding="30" 
+                       CornerRadius="8" 
+                       HasShadow="True"
+                       BorderColor="#e0e0e0">
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="Why Choose HohoCarApp?" 
+                               FontSize="20" 
+                               FontAttributes="Bold"
+                               TextColor="#2c3e50"
+                               FontFamily="OpenSansSemibold"
+                               HorizontalOptions="Center" />
+                        
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" RowSpacing="20" ColumnSpacing="20">
+                            <Frame Grid.Row="0" Grid.Column="0" 
+                                   BackgroundColor="#f8f9fa" 
+                                   Padding="20" 
+                                   CornerRadius="6"
+                                   BorderColor="#e9ecef">
+                                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                                    <Label Text="🔍" FontSize="24" HorizontalOptions="Center" />
+                                    <Label Text="Advanced Search" FontSize="14" FontAttributes="Bold" TextColor="#2c3e50" HorizontalOptions="Center" />
+                                    <Label Text="Find your perfect vehicle with our comprehensive search and filter options" FontSize="12" TextColor="#6c757d" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+                            
+                            <Frame Grid.Row="0" Grid.Column="1" 
+                                   BackgroundColor="#f8f9fa" 
+                                   Padding="20" 
+                                   CornerRadius="6"
+                                   BorderColor="#e9ecef">
+                                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                                    <Label Text="📊" FontSize="24" HorizontalOptions="Center" />
+                                    <Label Text="Detailed Analytics" FontSize="14" FontAttributes="Bold" TextColor="#2c3e50" HorizontalOptions="Center" />
+                                    <Label Text="Comprehensive vehicle data and market insights" FontSize="12" TextColor="#6c757d" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+                            
+                            <Frame Grid.Row="1" Grid.Column="0" 
+                                   BackgroundColor="#f8f9fa" 
+                                   Padding="20" 
+                                   CornerRadius="6"
+                                   BorderColor="#e9ecef">
+                                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                                    <Label Text="⚡" FontSize="24" HorizontalOptions="Center" />
+                                    <Label Text="Fast Performance" FontSize="14" FontAttributes="Bold" TextColor="#2c3e50" HorizontalOptions="Center" />
+                                    <Label Text="Optimized for speed and efficiency" FontSize="12" TextColor="#6c757d" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+                            
+                            <Frame Grid.Row="1" Grid.Column="1" 
+                                   BackgroundColor="#f8f9fa" 
+                                   Padding="20" 
+                                   CornerRadius="6"
+                                   BorderColor="#e9ecef">
+                                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                                    <Label Text="🛡️" FontSize="24" HorizontalOptions="Center" />
+                                    <Label Text="Secure Platform" FontSize="14" FontAttributes="Bold" TextColor="#2c3e50" HorizontalOptions="Center" />
+                                    <Label Text="Enterprise-grade security and reliability" FontSize="12" TextColor="#6c757d" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#2c3e50" 
+                       Padding="25" 
+                       CornerRadius="8" 
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="15" HorizontalOptions="Center">
+                        <Label Text="Contact Information" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               FontFamily="OpenSansSemibold"
+                               HorizontalOptions="Center" />
+                        
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" RowSpacing="10" ColumnSpacing="20">
+                            <Label Grid.Row="0" Grid.Column="0" 
+                                   Text="📧 info@hohocarapp.com" 
+                                   FontSize="14" 
+                                   TextColor="#bdc3c7"
+                                   FontFamily="OpenSansRegular"
+                                   HorizontalOptions="Center" />
+                            <Label Grid.Row="0" Grid.Column="1" 
+                                   Text="📞 +32 123 456 789" 
+                                   FontSize="14" 
+                                   TextColor="#bdc3c7"
+                                   FontFamily="OpenSansRegular"
+                                   HorizontalOptions="Center" />
+                            <Label Grid.Row="1" Grid.Column="0" 
+                                   Text="🏢 Brussels, Belgium" 
+                                   FontSize="14" 
+                                   TextColor="#bdc3c7"
+                                   FontFamily="OpenSansRegular"
+                                   HorizontalOptions="Center" />
+                            <Label Grid.Row="1" Grid.Column="1" 
+                                   Text="🕒 Mon-Fri 9:00-18:00" 
+                                   FontSize="14" 
+                                   TextColor="#bdc3c7"
+                                   FontFamily="OpenSansRegular"
+                                   HorizontalOptions="Center" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+
+          
+            <Frame Grid.Row="2" 
+                   BackgroundColor="#1a1a1a" 
+                   Padding="20,15"
+                   CornerRadius="0">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Grid.Column="0" 
+                           Text="© 2024 HohoCarApp. All rights reserved. | Developed with .NET MAUI" 
+                           FontSize="12" 
+                           TextColor="#888888"
+                           FontFamily="OpenSansRegular"
+                           VerticalOptions="Center" />
+                    <Label Grid.Column="1" 
+                           Text="v1.0.0" 
+                           FontSize="12" 
+                           TextColor="#888888"
+                           FontFamily="OpenSansRegular"
+                           VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+        </Grid>
     </ScrollView>
 </ContentPage>
 

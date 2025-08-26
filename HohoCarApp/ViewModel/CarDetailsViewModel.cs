@@ -24,7 +24,18 @@ namespace HohoCarApp.ViewModel
 
             try
             {
-                SelectedCar = await _carService.GetCarByIdAsync(id); 
+                System.Diagnostics.Debug.WriteLine($"CarDetailsViewModel: Loading car with ID {id}");
+                SelectedCar = await _carService.GetCarByIdAsync(id);
+                
+                if (SelectedCar != null)
+                {
+                    System.Diagnostics.Debug.WriteLine($"CarDetailsViewModel: Loaded car {SelectedCar.Brand} {SelectedCar.Model}");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($"CarDetailsViewModel: No car found with ID {id}");
+                }
+                
                 OnPropertyChanged(nameof(SelectedCar));
             }
             finally 

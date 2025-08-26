@@ -4,7 +4,6 @@
              x:Name="CarListPage"
              Title="Liste des voitures">
 
-    <!-- ✅ ToolbarItem intégré correctement -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Retour"
                      Order="Primary"
@@ -19,14 +18,15 @@
                     <Frame Margin="5" Padding="10" CornerRadius="10" BorderColor="LightGray" HasShadow="True">
                         <Grid ColumnDefinitions="100,*,Auto" RowDefinitions="Auto,Auto">
                             <Image Grid.RowSpan="2"
-                                   Source="{Binding ImagePath}"
+                                   Source="{Binding ImageUrl}"
                                    WidthRequest="100"
                                    HeightRequest="100"
                                    Aspect="AspectFill"
                                    Margin="5"/>
 
                             <StackLayout Grid.Column="1">
-                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding Brand}" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding Model}" FontSize="14" />
                                 <Label Text="{Binding Price, StringFormat='Prix: {0:C}'}" FontSize="14" />
                                 <Label Text="{Binding Year, StringFormat='Année: {0}'}" FontSize="12" TextColor="Gray"/>
                             </StackLayout>

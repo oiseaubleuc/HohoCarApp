@@ -5,32 +5,41 @@ using HohoCarApp.Models;
 using HohoCarApp.ViewModel;
 using System.Threading.Tasks;
 using HohoCarApp.Services;
+using System.Windows.Input;
 
-
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using HohoCarApp.Models;
-using HohoCarApp.Services;
-
-public class CarListViewModel : BaseViewModel
+namespace HohoCarApp.ViewModel
 {
-    private readonly ApiService _api;
-
-   
-    public ObservableCollection<Car> Cars { get; } = new();
-
- 
-    public CarListViewModel(ApiService api)
+    public class CarListViewModel : BaseViewModel
     {
-        _api = api;          
-        _ = LoadCars();    
-    }
+        private readonly ICarService _carService;
 
-    public async Task LoadCars()
-    {
-        var cars = await _api.GetCarsAsync();   
-        Cars.Clear();
-        foreach (var car in cars)
-            Cars.Add(car);
+     
+        public ObservableCollection<Car> Cars { get; } = new();
+
+        public ICommand SeeDetailsCommand { get; }
+
+     
+        public CarListViewModel(ICarService carService)
+        {
+            _carService = carService;
+            SeeDetailsCommand = new Command<Car>(async (car) => await SeeDetails(car));
+            _ = LoadCars();
+        }
+
+        private async Task SeeDetails(Car car)
+        {
+            if (car != null)
+            {
+                await Shell.Current.GoToAsync($"CarDetails?CarId={car.Id}");
+            }
+        }
+
+        public async Task LoadCars()
+        {
+            var cars = await _carService.GetCarsAsync();
+            Cars.Clear();
+            foreach (var car in cars)
+                Cars.Add(car);
+        }
     }
 }

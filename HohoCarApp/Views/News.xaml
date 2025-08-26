@@ -1,0 +1,14 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HohoCarApp.Views.News"
+             Title="Nieuws">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <Label Text="Nieuws" FontSize="24" FontAttributes="Bold" />
+            <Label Text="Hier kun je nieuws en updates over auto's tonen." />
+            <Button Text="← Terug" Clicked="OnBack" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+
+

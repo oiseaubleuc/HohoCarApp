@@ -25,6 +25,14 @@ namespace HohoCarApp.Models
             public string ImageUrl { get; set; }
 
             public int Mileage { get; set; }
+
+            public string Category { get; set; } = "SUV";
+
+            public string FuelType { get; set; } = "Diesel";
+
+            public string Location { get; set; } = "Luik";
+
+            public int Views { get; set; } = 0;
         }
     
 

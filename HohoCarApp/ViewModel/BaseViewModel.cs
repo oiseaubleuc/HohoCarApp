@@ -14,12 +14,11 @@ namespace HohoCarApp.ViewModel
             get => isBusy;
             set
             {
-
-                if (isBusy = value)
+                if (isBusy == value)
                     return;
 
                 isBusy = value;
-                OnPropertyChanged(nameof(isBusy));
+                OnPropertyChanged(nameof(IsBusy));
             }
         }
 
