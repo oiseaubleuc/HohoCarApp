@@ -6,12 +6,46 @@
     xmlns:local="clr-namespace:HohoCarApp"
     xmlns:views="clr-namespace:HohoCarApp.Views"
     Shell.FlyoutBehavior="Disabled"
-    Title="HohoCarApp">
+    Title="HohoCarApp"
+    Shell.NavBarIsVisible="False">
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate views:Home}"
         Route="Home" />
+
+            <ShellContent
+            Title="Login"
+            ContentTemplate="{DataTemplate views:Login}"
+            Route="Login" />
+        <ShellContent
+            Title="AddCar"
+            ContentTemplate="{DataTemplate views:AddCar}"
+            Route="AddCar" />
+
+    <ShellContent
+        Title="Register"
+        ContentTemplate="{DataTemplate views:Register}"
+        Route="Register" />
+
+    <ShellContent
+        Title="Profile"
+        ContentTemplate="{DataTemplate views:Profile}"
+        Route="Profile" />
+
+    <ShellContent
+            Title="Cars"
+            ContentTemplate="{DataTemplate views:CarList}"
+            Route="CarList" />
+    <ShellContent
+            Title="News"
+            ContentTemplate="{DataTemplate views:News}"
+            Route="News" />
+
+    <ShellContent
+            Title="CarDetails"
+            ContentTemplate="{DataTemplate views:CarDetails}"
+            Route="CarDetails" />
 
 </Shell>
 

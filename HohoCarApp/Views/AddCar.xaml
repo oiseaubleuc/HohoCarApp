@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="HohoCarApp.Views.AddCar"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Add New Car"
+             BackgroundColor="White">
+
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <StackLayout Padding="20" Spacing="20">
+                
+                <StackLayout Spacing="10" HorizontalOptions="Center">
+                    <Label Text="Add New Car"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Fill in the car details below"
+                           FontSize="16"
+                           TextColor="#666"
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout Spacing="15">
+                    <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                        <StackLayout Spacing="5">
+                            <Label Text="Brand *" 
+                                   FontSize="14" 
+                                   TextColor="#666"/>
+                            <Entry x:Name="BrandEntry"
+                                   Placeholder="Enter car brand"
+                                   Text="{Binding Brand}"
+                                   FontSize="16"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                        <StackLayout Spacing="5">
+                            <Label Text="Model *" 
+                                   FontSize="14" 
+                                   TextColor="#666"/>
+                            <Entry x:Name="ModelEntry"
+                                   Placeholder="Enter car model"
+                                   Text="{Binding Model}"
+                                   FontSize="16"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                        <StackLayout Spacing="5">
+                            <Label Text="Year *" 
+                                   FontSize="14" 
+                                   TextColor="#666"/>
+                            <Entry x:Name="YearEntry"
+                                   Placeholder="Enter year (e.g., 2023)"
+                                   Text="{Binding Year}"
+                                   Keyboard="Numeric"
+                                   FontSize="16"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                        <StackLayout Spacing="5">
+                            <Label Text="Price (€) *" 
+                                   FontSize="14" 
+                                   TextColor="#666"/>
+                            <Entry x:Name="PriceEntry"
+                                   Placeholder="Enter price"
+                                   Text="{Binding Price}"
+                                   Keyboard="Numeric"
+                                   FontSize="16"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                        <StackLayout Spacing="5">
+                            <Label Text="Mileage (km) *" 
+                                   FontSize="14" 
+                                   TextColor="#666"/>
+                            <Entry x:Name="MileageEntry"
+                                   Placeholder="Enter mileage"
+                                   Text="{Binding Mileage}"
+                                   Keyboard="Numeric"
+                                   FontSize="16"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                        <StackLayout Spacing="5">
+                            <Label Text="Fuel Type *" 
+                                   FontSize="14" 
+                                   TextColor="#666"/>
+                            <Picker x:Name="FuelTypePicker"
+                                    Title="Select fuel type"
+                                    SelectedItem="{Binding SelectedFuelType}">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Petrol</x:String>
+                                        <x:String>Diesel</x:String>
+                                        <x:String>Electric</x:String>
+                                        <x:String>Hybrid</x:String>
+                                        <x:String>LPG</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                        <StackLayout Spacing="5">
+                            <Label Text="Category *" 
+                                   FontSize="14" 
+                                   TextColor="#666"/>
+                            <Picker x:Name="CategoryPicker"
+                                    Title="Select category"
+                                    SelectedItem="{Binding SelectedCategory}">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Sedan</x:String>
+                                        <x:String>SUV</x:String>
+                                        <x:String>Hatchback</x:String>
+                                        <x:String>Wagon</x:String>
+                                        <x:String>Coupe</x:String>
+                                        <x:String>Convertible</x:String>
+                                        <x:String>Van</x:String>
+                                        <x:String>Pickup</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                        <StackLayout Spacing="5">
+                            <Label Text="Description" 
+                                   FontSize="14" 
+                                   TextColor="#666"/>
+                            <Editor x:Name="DescriptionEditor"
+                                    Placeholder="Enter car description"
+                                    Text="{Binding Description}"
+                                    AutoSize="TextChanges"
+                                    HeightRequest="100"
+                                    FontSize="16"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                        <StackLayout Spacing="10">
+                            <Label Text="Car Image" 
+                                   FontSize="14" 
+                                   TextColor="#666"/>
+                            
+                            <Image x:Name="ImagePreview"
+                                   Source="{Binding SelectedImageSource}"
+                                   HeightRequest="150"
+                                   WidthRequest="200"
+                                   Aspect="AspectFit"
+                                   BackgroundColor="#f0f0f0"
+                                   IsVisible="{Binding HasSelectedImage}"/>
+                            
+                            <Button Text="Select Image from Computer"
+                                    Command="{Binding SelectImageCommand}"
+                                    BackgroundColor="#28a745"
+                                    TextColor="White"
+                                    FontSize="14"
+                                    CornerRadius="8"
+                                    HeightRequest="40"/>
+                            
+                            <Label Text="OR" 
+                                   FontSize="12" 
+                                   TextColor="#999"
+                                   HorizontalOptions="Center"/>
+                            
+                            <Entry x:Name="ImageUrlEntry"
+                                   Placeholder="Enter image URL (optional)"
+                                   Text="{Binding ImageUrl}"
+                                   FontSize="16"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Button Text="Add Car"
+                            Command="{Binding AddCarCommand}"
+                            BackgroundColor="#007bff"
+                            TextColor="White"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="10"
+                            HeightRequest="50"
+                            Margin="0,10,0,0"/>
+
+                    <ActivityIndicator x:Name="LoadingIndicator"
+                                      IsRunning="{Binding IsLoading}"
+                                      IsVisible="{Binding IsLoading}"
+                                      Color="#007bff"
+                                      HorizontalOptions="Center"/>
+
+                    <Label x:Name="ErrorMessage"
+                           Text="{Binding ErrorMessage}"
+                           TextColor="Red"
+                           FontSize="14"
+                           HorizontalOptions="Center"
+                           IsVisible="{Binding HasError}"/>
+
+               
+                    <Label x:Name="SuccessMessage"
+                           Text="{Binding SuccessMessage}"
+                           TextColor="Green"
+                           FontSize="14"
+                           HorizontalOptions="Center"
+                           IsVisible="{Binding HasSuccess}"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <Frame Grid.Row="1" BackgroundColor="#212121" Padding="20,15" HasShadow="True">
+            <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
+                <StackLayout Grid.Column="0" Orientation="Vertical" HorizontalOptions="Center">
+                    <Label Text="🏠" FontSize="20" HorizontalOptions="Center"/>
+                    <Label Text="Home" FontSize="12" TextColor="White" HorizontalOptions="Center"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHomeClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="Center">
+                    <Label Text="🚗" FontSize="20" HorizontalOptions="Center"/>
+                    <Label Text="Cars" FontSize="12" TextColor="White" HorizontalOptions="Center"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCarsClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="Center">
+                    <Label Text="📰" FontSize="20" HorizontalOptions="Center"/>
+                    <Label Text="News" FontSize="12" TextColor="White" HorizontalOptions="Center"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNewsClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="Center">
+                    <Label Text="👤" FontSize="20" HorizontalOptions="Center"/>
+                    <Label Text="Login" FontSize="12" TextColor="White" HorizontalOptions="Center"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLoginClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </Grid>
+
+</ContentPage>

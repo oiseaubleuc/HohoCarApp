@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="HohoCarApp.Views.Register"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Register"
+             BackgroundColor="White">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            
+         
+            <StackLayout Spacing="10" HorizontalOptions="Center">
+                <Image Source="car_logo.png" 
+                       HeightRequest="80" 
+                       WidthRequest="80"
+                       HorizontalOptions="Center"
+                       Margin="0,20,0,0"/>
+                <Label Text="Create Account"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       HorizontalOptions="Center"/>
+                <Label Text="Join our car sales community"
+                       FontSize="16"
+                       TextColor="#666"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Spacing="15">
+              
+                <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                    <StackLayout Spacing="5">
+                        <Label Text="First Name" 
+                               FontSize="14" 
+                               TextColor="#666"/>
+                        <Entry x:Name="FirstNameEntry"
+                               Placeholder="Enter your first name"
+                               Text="{Binding FirstName}"
+                               ReturnType="Next"
+                               FontSize="16"/>
+                    </StackLayout>
+                </Frame>
+
+               
+                <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                    <StackLayout Spacing="5">
+                        <Label Text="Last Name" 
+                               FontSize="14" 
+                               TextColor="#666"/>
+                        <Entry x:Name="LastNameEntry"
+                               Placeholder="Enter your last name"
+                               Text="{Binding LastName}"
+                               ReturnType="Next"
+                               FontSize="16"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                    <StackLayout Spacing="5">
+                        <Label Text="Email" 
+                               FontSize="14" 
+                               TextColor="#666"/>
+                        <Entry x:Name="EmailEntry"
+                               Placeholder="Enter your email"
+                               Text="{Binding Email}"
+                               Keyboard="Email"
+                               ReturnType="Next"
+                               FontSize="16"/>
+                    </StackLayout>
+                </Frame>
+
+              
+                <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                    <StackLayout Spacing="5">
+                        <Label Text="Phone Number" 
+                               FontSize="14" 
+                               TextColor="#666"/>
+                        <Entry x:Name="PhoneNumberEntry"
+                               Placeholder="Enter your phone number"
+                               Text="{Binding PhoneNumber}"
+                               Keyboard="Telephone"
+                               ReturnType="Next"
+                               FontSize="16"/>
+                    </StackLayout>
+                </Frame>
+
+              
+                <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                    <StackLayout Spacing="5">
+                        <Label Text="Username" 
+                               FontSize="14" 
+                               TextColor="#666"/>
+                        <Entry x:Name="UsernameEntry"
+                               Placeholder="Choose a username"
+                               Text="{Binding Username}"
+                               ReturnType="Next"
+                               FontSize="16"/>
+                    </StackLayout>
+                </Frame>
+
+           
+                <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                    <StackLayout Spacing="5">
+                        <Label Text="Password" 
+                               FontSize="14" 
+                               TextColor="#666"/>
+                        <Entry x:Name="PasswordEntry"
+                               Placeholder="Create a password"
+                               Text="{Binding Password}"
+                               IsPassword="True"
+                               ReturnType="Next"
+                               FontSize="16"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                    <StackLayout Spacing="5">
+                        <Label Text="Confirm Password" 
+                               FontSize="14" 
+                               TextColor="#666"/>
+                        <Entry x:Name="ConfirmPasswordEntry"
+                               Placeholder="Confirm your password"
+                               Text="{Binding ConfirmPassword}"
+                               IsPassword="True"
+                               ReturnType="Done"
+                               FontSize="16"/>
+                    </StackLayout>
+                </Frame>
+
+              
+                <StackLayout Orientation="Horizontal" Spacing="5">
+                    <CheckBox x:Name="TermsCheckBox" 
+                              IsChecked="{Binding AcceptTerms}"/>
+                    <Label Text="I agree to the Terms and Conditions"
+                           VerticalOptions="Center"
+                           FontSize="14"
+                           TextColor="#666">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ViewTermsCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+              
+                <Button Text="Create Account"
+                        Command="{Binding RegisterCommand}"
+                        BackgroundColor="#007bff"
+                        TextColor="White"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Margin="0,10,0,0"/>
+
+               
+                <ActivityIndicator x:Name="LoadingIndicator"
+                                  IsRunning="{Binding IsLoading}"
+                                  IsVisible="{Binding IsLoading}"
+                                  Color="#007bff"
+                                  HorizontalOptions="Center"/>
+
+                <Label x:Name="ErrorMessage"
+                       Text="{Binding ErrorMessage}"
+                       TextColor="Red"
+                       FontSize="14"
+                       HorizontalOptions="Center"
+                       IsVisible="{Binding HasError}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="5">
+                <Label Text="Already have an account?" 
+                       FontSize="14" 
+                       TextColor="#666"/>
+                <Label Text="Sign In"
+                       TextColor="#007bff"
+                       FontSize="14"
+                       FontAttributes="Bold">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToLoginCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

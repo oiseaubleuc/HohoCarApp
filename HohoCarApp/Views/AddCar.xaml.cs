@@ -1,12 +1,23 @@
-using Microsoft.Maui.Controls;
+using HohoCarApp.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HohoCarApp.Views
 {
-    public partial class News : ContentPage
+    public partial class AddCar : ContentPage
     {
-        public News()
+        private readonly AddCarViewModel _viewModel;
+
+        public AddCar()
         {
             InitializeComponent();
+            _viewModel = App.ServiceProvider.GetRequiredService<AddCarViewModel>();
+            BindingContext = _viewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.OnAppearing();
         }
 
         private async void OnHomeClicked(object sender, EventArgs e)
@@ -21,6 +32,7 @@ namespace HohoCarApp.Views
 
         private async void OnNewsClicked(object sender, EventArgs e)
         {
+            await Shell.Current.GoToAsync("///News");
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)
@@ -29,5 +41,3 @@ namespace HohoCarApp.Views
         }
     }
 }
-
-

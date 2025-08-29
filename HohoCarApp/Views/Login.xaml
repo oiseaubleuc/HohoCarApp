@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="HohoCarApp.Views.Login"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Login"
+             BackgroundColor="White">
+
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
+            <StackLayout Padding="20" Spacing="20">
+            
+ 
+            <StackLayout Spacing="10" HorizontalOptions="Center">
+                <Image Source="car_logo.png" 
+                       HeightRequest="80" 
+                       WidthRequest="80"
+                       HorizontalOptions="Center"
+                       Margin="0,20,0,0"/>
+                <Label Text="Welcome Back"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       HorizontalOptions="Center"/>
+                <Label Text="Sign in to your account"
+                       FontSize="16"
+                       TextColor="#666"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+
+         
+            <StackLayout Spacing="15">
+          
+                <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                    <StackLayout Spacing="5">
+                        <Label Text="Email" 
+                               FontSize="14" 
+                               TextColor="#666"/>
+                        <Entry x:Name="EmailEntry"
+                               Placeholder="Enter your email"
+                               Text="{Binding Email}"
+                               Keyboard="Email"
+                               ReturnType="Next"
+                               FontSize="16"
+                               Completed="OnEmailCompleted"/>
+                    </StackLayout>
+                </Frame>
+
+        
+                <Frame Padding="15" CornerRadius="10" HasShadow="True" BackgroundColor="#f8f9fa">
+                    <StackLayout Spacing="5">
+                        <Label Text="Password" 
+                               FontSize="14" 
+                               TextColor="#666"/>
+                        <Entry x:Name="PasswordEntry"
+                               Placeholder="Enter your password"
+                               Text="{Binding Password}"
+                               IsPassword="True"
+                               ReturnType="Done"
+                               FontSize="16"/>
+                    </StackLayout>
+                </Frame>
+
+              
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackLayout Grid.Column="0" Orientation="Horizontal" Spacing="5">
+                        <CheckBox x:Name="RememberMeCheckBox" 
+                                  IsChecked="{Binding RememberMe}"/>
+                        <Label Text="Remember me" 
+                               VerticalOptions="Center"
+                               FontSize="14"
+                               TextColor="#666"/>
+                    </StackLayout>
+                    <Label Grid.Column="1" 
+                           Text="Forgot Password?"
+                           TextColor="#007bff"
+                           FontSize="14"
+                           VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+
+         
+                <Button Text="Sign In"
+                        Command="{Binding LoginCommand}"
+                        Clicked="OnLoginButtonClicked"
+                        BackgroundColor="#007bff"
+                        TextColor="White"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Margin="0,10,0,0"/>
+
+            
+                <ActivityIndicator x:Name="LoadingIndicator"
+                                  IsRunning="{Binding IsLoading}"
+                                  IsVisible="{Binding IsLoading}"
+                                  Color="#007bff"
+                                  HorizontalOptions="Center"/>
+
+               
+                <Label x:Name="ErrorMessage"
+                       Text="{Binding ErrorMessage}"
+                       TextColor="Red"
+                       FontSize="14"
+                       HorizontalOptions="Center"
+                       IsVisible="{Binding HasError}"/>
+            </StackLayout>
+
+           
+            <Button Text="Create New Account"
+                    Command="{Binding NavigateToRegisterCommand}"
+                    BackgroundColor="Transparent"
+                    TextColor="#007bff"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    BorderColor="#007bff"
+                    BorderWidth="1"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Margin="0,10,0,0"/>
+
+            </StackLayout>
+        </ScrollView>
+
+       
+        <Frame Grid.Row="1" BackgroundColor="#212121" Padding="20,15" HasShadow="True">
+        <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
+   
+            <StackLayout Grid.Column="0" Orientation="Vertical" HorizontalOptions="Center">
+                <Label Text="🏠" FontSize="20" HorizontalOptions="Center"/>
+                <Label Text="Home" FontSize="12" TextColor="White" HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnHomeClicked" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+          
+            <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="Center">
+                <Label Text="🚗" FontSize="20" HorizontalOptions="Center"/>
+                <Label Text="Cars" FontSize="12" TextColor="White" HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCarsClicked" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+          
+            <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="Center">
+                <Label Text="📰" FontSize="20" HorizontalOptions="Center"/>
+                <Label Text="News" FontSize="12" TextColor="White" HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnNewsClicked" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+         
+            <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="Center">
+                <Label Text="👤" FontSize="20" HorizontalOptions="Center"/>
+                <Label Text="Login" FontSize="12" TextColor="#2196F3" HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLoginClicked" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+        </Grid>
+        </Frame>
+    </Grid>
+
+</ContentPage>

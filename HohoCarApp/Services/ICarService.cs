@@ -8,7 +8,7 @@ namespace HohoCarApp.Services
     {
         Task<List<Car>> GetCarsAsync();
         Task<Car> GetCarByIdAsync(int carId);
-        Task AddCarAsync(Car car);
+        Task<Car> AddCarAsync(Car car);
         Task UpdateCarAsync(Car car);
         Task DeleteCarAsync(int id);
     }

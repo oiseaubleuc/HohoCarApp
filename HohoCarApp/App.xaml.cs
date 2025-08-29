@@ -1,5 +1,6 @@
 ﻿using HohoCarApp.Views;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Maui.Controls;
 
 namespace HohoCarApp
 {

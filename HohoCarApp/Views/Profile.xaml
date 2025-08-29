@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="HohoCarApp.Views.Profile"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Profile"
+             BackgroundColor="White">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+        
+
+        <Frame Grid.Row="0" 
+               BackgroundColor="#007bff" 
+               Padding="20,40,20,20"
+               CornerRadius="0"
+               HasShadow="True">
+            <StackLayout Spacing="15">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Grid.Column="0" 
+                           Text="Profile" 
+                           FontSize="24" 
+                           FontAttributes="Bold" 
+                           TextColor="White" />
+                    <Button Grid.Column="1" 
+                            Text="Logout"
+                            Command="{Binding LogoutCommand}"
+                            BackgroundColor="Transparent"
+                            TextColor="White"
+                            BorderColor="White"
+                            BorderWidth="1"
+                            CornerRadius="8"
+                            HeightRequest="35"
+                            FontSize="14" />
+                </Grid>
+                
+               
+                <Frame Padding="20" 
+                       CornerRadius="15" 
+                       BackgroundColor="White" 
+                       HasShadow="True">
+                    <StackLayout Spacing="15">
+                        <StackLayout Orientation="Horizontal" Spacing="15">
+                            <Frame Padding="0" 
+                                   CornerRadius="25" 
+                                   BackgroundColor="#f0f0f0" 
+                                   HeightRequest="50" 
+                                   WidthRequest="50"
+                                   HorizontalOptions="Start">
+                                <Label Text="👤" 
+                                       FontSize="24" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Center" />
+                            </Frame>
+                            <StackLayout VerticalOptions="Center" Spacing="5">
+                                <Label Text="{Binding UserInfo.FullName, FallbackValue='User Name'}" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#333" />
+                                <Label Text="{Binding UserInfo.Email, FallbackValue='user@email.com'}" 
+                                       FontSize="14" 
+                                       TextColor="#666" />
+                                <Label Text="Member since {Binding UserInfo.CreatedAt, StringFormat='{0:MMM yyyy}'}" 
+                                       FontSize="12" 
+                                       TextColor="#999" />
+                            </StackLayout>
+                        </StackLayout>
+                        
+                      
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                            <Frame Grid.Column="0" 
+                                   Padding="15" 
+                                   CornerRadius="10" 
+                                   BackgroundColor="#f8f9fa">
+                                <StackLayout Spacing="5" HorizontalOptions="Center">
+                                    <Label Text="{Binding FavoriteCarsCount}" 
+                                           FontSize="20" 
+                                           FontAttributes="Bold" 
+                                           TextColor="#007bff"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="Favorites" 
+                                           FontSize="12" 
+                                           TextColor="#666"
+                                           HorizontalOptions="Center" />
+                                </StackLayout>
+                            </Frame>
+                            
+                            <Frame Grid.Column="1" 
+                                   Padding="15" 
+                                   CornerRadius="10" 
+                                   BackgroundColor="#f8f9fa">
+                                <StackLayout Spacing="5" HorizontalOptions="Center">
+                                    <Label Text="{Binding UserInfo.ViewsCount, FallbackValue='0'}" 
+                                           FontSize="20" 
+                                           FontAttributes="Bold" 
+                                           TextColor="#007bff"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="Views" 
+                                           FontSize="12" 
+                                           TextColor="#666"
+                                           HorizontalOptions="Center" />
+                                </StackLayout>
+                            </Frame>
+                            
+                            <Frame Grid.Column="2" 
+                                   Padding="15" 
+                                   CornerRadius="10" 
+                                   BackgroundColor="#f8f9fa">
+                                <StackLayout Spacing="5" HorizontalOptions="Center">
+                                    <Label Text="{Binding UserInfo.LastLoginAt, StringFormat='{0:dd/MM}'}" 
+                                           FontSize="20" 
+                                           FontAttributes="Bold" 
+                                           TextColor="#007bff"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="Last Login" 
+                                           FontSize="12" 
+                                           TextColor="#666"
+                                           HorizontalOptions="Center" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                        
+                       
+                        <StackLayout IsVisible="{Binding IsAdmin}" Spacing="10">
+                            <Label Text="Admin Actions" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold" 
+                                   TextColor="White" 
+                                   HorizontalOptions="Center"/>
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                <Button Grid.Column="0" 
+                                        Text="Add New Car" 
+                                        Command="{Binding AddNewCarCommand}"
+                                        BackgroundColor="#4CAF50" 
+                                        TextColor="White" 
+                                        CornerRadius="8" 
+                                        HeightRequest="40" 
+                                        FontSize="14"/>
+                                <Button Grid.Column="1" 
+                                        Text="Manage Users" 
+                                        Command="{Binding ManageUsersCommand}"
+                                        BackgroundColor="#FF9800" 
+                                        TextColor="White" 
+                                        CornerRadius="8" 
+                                        HeightRequest="40" 
+                                        FontSize="14"/>
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Frame>
+
+    
+        <ScrollView Grid.Row="1" Padding="20">
+            <StackLayout Spacing="20">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Grid.Column="0" 
+                           Text="My Favorite Cars" 
+                           FontSize="20" 
+                           FontAttributes="Bold" 
+                           TextColor="#333" />
+                    <Label Grid.Column="1" 
+                           Text="{Binding FavoriteCarsCount, StringFormat='{0} cars'}" 
+                           FontSize="14" 
+                           TextColor="#666" />
+                </Grid>
+
+                <CollectionView ItemsSource="{Binding FavoriteCars}"
+                               IsVisible="{Binding HasFavoriteCars}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="0,0,0,15" 
+                                   Padding="15" 
+                                   CornerRadius="12" 
+                                   BackgroundColor="White" 
+                                   HasShadow="True">
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="15">
+                              
+                                    <Frame Grid.Column="0" 
+                                           Padding="0" 
+                                           CornerRadius="8" 
+                                           HeightRequest="80" 
+                                           WidthRequest="120"
+                                           BackgroundColor="#f5f5f5">
+                                        <Image Source="{Binding ImageUrl}" 
+                                               Aspect="AspectFill" />
+                                    </Frame>
+                                    
+                                
+                                    <StackLayout Grid.Column="1" 
+                                               Spacing="5" 
+                                               VerticalOptions="Center">
+                                        <Label Text="{Binding Brand}" 
+                                               FontSize="16" 
+                                               FontAttributes="Bold" 
+                                               TextColor="#333" />
+                                        <Label Text="{Binding Model}" 
+                                               FontSize="14" 
+                                               TextColor="#666" />
+                                        <Label Text="{Binding Year, StringFormat='{0} • {1} km'}" 
+                                               FontSize="12" 
+                                               TextColor="#999" />
+                                        <Label Text="{Binding Price, StringFormat='€{0:N0}'}" 
+                                               FontSize="16" 
+                                               FontAttributes="Bold" 
+                                               TextColor="#007bff" />
+                                    </StackLayout>
+                                    
+                                  
+                                    <Button Grid.Column="2" 
+                                            Text="❤️" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveFavoriteCommand}"
+                                            CommandParameter="{Binding}"
+                                            BackgroundColor="Transparent"
+                                            FontSize="20"
+                                            HeightRequest="40"
+                                            WidthRequest="40"
+                                            VerticalOptions="Center" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <StackLayout IsVisible="{Binding HasNoFavoriteCars}"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             Spacing="20">
+                    <Label Text="❤️" 
+                           FontSize="60" 
+                           HorizontalOptions="Center" />
+                    <Label Text="No Favorite Cars Yet" 
+                           FontSize="20" 
+                           FontAttributes="Bold" 
+                           TextColor="#666"
+                           HorizontalOptions="Center" />
+                    <Label Text="Start browsing cars and add them to your favorites" 
+                           FontSize="14" 
+                           TextColor="#999"
+                           HorizontalOptions="Center" />
+                    <Button Text="Browse Cars"
+                            Command="{Binding BrowseCarsCommand}"
+                            BackgroundColor="#007bff"
+                            TextColor="White"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="10"
+                            HeightRequest="45"
+                            WidthRequest="150" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <Frame Grid.Row="2" 
+               BackgroundColor="White" 
+               Padding="0,10,0,20"
+               HasShadow="True"
+               CornerRadius="0">
+            <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="0">
+                <StackLayout Grid.Column="0" 
+                             Spacing="4" 
+                             HorizontalOptions="Center">
+                    <Label Text="🏠" 
+                           FontSize="20" 
+                           HorizontalOptions="Center" />
+                    <Label Text="Home" 
+                           FontSize="12" 
+                           TextColor="#666"
+                           HorizontalOptions="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHomeClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                
+                <StackLayout Grid.Column="1" 
+                             Spacing="4" 
+                             HorizontalOptions="Center">
+                    <Label Text="🚗" 
+                           FontSize="20" 
+                           HorizontalOptions="Center" />
+                    <Label Text="Cars" 
+                           FontSize="12" 
+                           TextColor="#666"
+                           HorizontalOptions="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCarsClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                
+                <StackLayout Grid.Column="2" 
+                             Spacing="4" 
+                             HorizontalOptions="Center">
+                    <Label Text="📰" 
+                           FontSize="20" 
+                           HorizontalOptions="Center" />
+                    <Label Text="News" 
+                           FontSize="12" 
+                           TextColor="#666"
+                           HorizontalOptions="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNewsClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                
+                <StackLayout Grid.Column="3" 
+                             Spacing="4" 
+                             HorizontalOptions="Center">
+                    <Label Text="👤" 
+                           FontSize="20" 
+                           HorizontalOptions="Center" />
+                    <Label Text="Profile" 
+                           FontSize="12" 
+                           TextColor="#007bff"
+                           HorizontalOptions="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnProfileClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </Grid>
+
+</ContentPage>

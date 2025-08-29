@@ -72,11 +72,11 @@ namespace HohoCarApp.Services
             return await Task.FromResult(car);
         }
 
-        public async Task AddCarAsync(Car car)
+        public async Task<Car> AddCarAsync(Car car)
         {
             car.Id = cars.Max(c => c.Id) + 1;
             cars.Add(car);
-            await Task.CompletedTask;
+            return await Task.FromResult(car);
         }
 
         public async Task UpdateCarAsync(Car car)

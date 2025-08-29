@@ -1,14 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HohoCarApp.Views.News"
-             Title="Nieuws">
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="16">
-            <Label Text="Nieuws" FontSize="24" FontAttributes="Bold" />
-            <Label Text="Hier kun je nieuws en updates over auto's tonen." />
-            <Button Text="← Terug" Clicked="OnBack" />
-        </VerticalStackLayout>
-    </ScrollView>
+             Title="News"
+             BackgroundColor="White">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="0">
+ 
+        <Frame Grid.Row="0" 
+               BackgroundColor="White" 
+               Padding="20,10,20,15"
+               HasShadow="True"
+               CornerRadius="0">
+            <Label Text="Latest News" 
+                   FontSize="20" 
+                   FontAttributes="Bold" 
+                   TextColor="#333"
+                   HorizontalOptions="Center" />
+        </Frame>
+
+  
+        <ScrollView Grid.Row="1" Padding="20">
+            <StackLayout Spacing="20">
+              
+                <Frame Padding="20" 
+                       CornerRadius="12" 
+                       BackgroundColor="White" 
+                       HasShadow="True">
+                    <StackLayout Spacing="12">
+                        <Label Text="New Electric Car Models Arriving" 
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="#333" />
+                        <Label Text="Discover the latest electric vehicles hitting the market this year. From compact city cars to luxury SUVs, find your perfect eco-friendly ride." 
+                               FontSize="14" 
+                               TextColor="#666"
+                               LineBreakMode="WordWrap" />
+                        <Label Text="March 15, 2024" 
+                               FontSize="12" 
+                               TextColor="#999" />
+                    </StackLayout>
+                </Frame>
+
+              
+                <Frame Padding="20" 
+                       CornerRadius="12" 
+                       BackgroundColor="White" 
+                       HasShadow="True">
+                    <StackLayout Spacing="12">
+                        <Label Text="Car Market Trends 2024" 
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="#333" />
+                        <Label Text="Stay updated with the latest trends in the automotive industry. Learn about market shifts, popular brands, and consumer preferences." 
+                               FontSize="14" 
+                               TextColor="#666"
+                               LineBreakMode="WordWrap" />
+                        <Label Text="March 10, 2024" 
+                               FontSize="12" 
+                               TextColor="#999" />
+                    </StackLayout>
+                </Frame>
+
+              
+                <Frame Padding="20" 
+                       CornerRadius="12" 
+                       BackgroundColor="White" 
+                       HasShadow="True">
+                    <StackLayout Spacing="12">
+                        <Label Text="Luxury Car Showcase" 
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="#333" />
+                        <Label Text="Explore our exclusive collection of luxury vehicles. From Mercedes to BMW, experience premium driving at its finest." 
+                               FontSize="14" 
+                               TextColor="#666"
+                               LineBreakMode="WordWrap" />
+                        <Label Text="March 5, 2024" 
+                               FontSize="12" 
+                               TextColor="#999" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+
+        
+        <Frame Grid.Row="2" 
+               BackgroundColor="White" 
+               Padding="0,10,0,20"
+               HasShadow="True"
+               CornerRadius="0">
+            <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="0">
+                <StackLayout Grid.Column="0" 
+                             Spacing="4" 
+                             HorizontalOptions="Center">
+                    <Label Text="🏠" 
+                           FontSize="20" 
+                           HorizontalOptions="Center" />
+                    <Label Text="Home" 
+                           FontSize="12" 
+                           TextColor="#666"
+                           HorizontalOptions="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHomeClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                
+                <StackLayout Grid.Column="1" 
+                             Spacing="4" 
+                             HorizontalOptions="Center">
+                    <Label Text="🚗" 
+                           FontSize="20" 
+                           HorizontalOptions="Center" />
+                    <Label Text="Cars" 
+                           FontSize="12" 
+                           TextColor="#666"
+                           HorizontalOptions="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCarsClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                
+                <StackLayout Grid.Column="2" 
+                             Spacing="4" 
+                             HorizontalOptions="Center">
+                    <Label Text="📰" 
+                           FontSize="20" 
+                           HorizontalOptions="Center" />
+                    <Label Text="News" 
+                           FontSize="12" 
+                           TextColor="#007bff"
+                           HorizontalOptions="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNewsClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                
+                <StackLayout Grid.Column="3" 
+                             Spacing="4" 
+                             HorizontalOptions="Center">
+                    <Label Text="🔐" 
+                           FontSize="20" 
+                           HorizontalOptions="Center" />
+                    <Label Text="Login" 
+                           FontSize="12" 
+                           TextColor="#666"
+                           HorizontalOptions="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLoginClicked" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </Grid>
+
 </ContentPage>
-
-
